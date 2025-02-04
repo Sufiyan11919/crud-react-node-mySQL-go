@@ -1,15 +1,43 @@
 import express  from "express";
-import mysql from "mysql"
+import mysql2 from "mysql2";
 import cors from "cors"
 
 const app = express();
 
-const db = mysql.createConnection({
-    host: "localhost",
+const db = mysql2.createConnection({
+    host: "127.0.0.1",
     user: "root",
-    password: "",
-    database: "test"
+    password: "Sufi@123",
+    database: "test",
+    // port: 6603
 })
+
+// Connect to the database
+db.connect((err) => {
+  if (err) {
+      console.error("Database connection failed:", err.stack);
+      return;
+  }
+  console.log("Connected to the MySQL database.");
+});
+
+const createBooksTable = `
+CREATE TABLE IF NOT EXISTS books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2),
+    cover VARCHAR(255)
+)`;
+
+db.query(createBooksTable, (err, result) => {
+    if (err) {
+        console.error("Failed to create table:", err);
+    } else {
+        console.log("Books table is ready.");
+    }
+});
+
 
 app.use(express.json())//return json data using the api server postman
 
