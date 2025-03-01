@@ -15,8 +15,7 @@ services:
       retries: 5
 
   backend:
-    build:
-      context: ./backend
+    image: 120717612929.dkr.ecr.us-east-1.amazonaws.com/my-app-backend:latest
     depends_on:
       mysql:
         condition: service_healthy
@@ -30,8 +29,7 @@ services:
       - "8800:8800"
 
   frontend:
-    build:
-      context: ./frontend
+    image: 120717612929.dkr.ecr.us-east-1.amazonaws.com/my-app-frontend:latest
     ports:
       - "5173:5173"
 
