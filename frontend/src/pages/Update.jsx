@@ -21,7 +21,7 @@ const Update = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      // Use relative URL so that the request goes to Nginx which proxies /api to the backend.
+      // Use relative URL for API call.
       await axios.put(`/api/books/${bookID}`, book);
       navigate("/");
     } catch (err) {

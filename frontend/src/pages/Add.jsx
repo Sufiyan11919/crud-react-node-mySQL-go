@@ -19,7 +19,7 @@ const Add = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      // Use relative URL so that the request goes to Nginx which proxies /api to the backend.
+      // Use relative URL so Nginx proxies the request to the backend.
       await axios.post(`/api/books`, book);
       navigate("/");
     } catch (err) {

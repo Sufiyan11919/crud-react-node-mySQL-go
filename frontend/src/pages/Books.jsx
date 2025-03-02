@@ -8,7 +8,7 @@ const Books = () => {
   useEffect(() => {
     const fetchAllBooks = async () => {
       try {
-        // Use relative URL for API call
+        // Relative URL for API call.
         const res = await axios.get(`/api/books`);
         setBooks(res.data);
         console.log(res);
@@ -21,7 +21,6 @@ const Books = () => {
 
   const handleDelete = async (id) => {
     try {
-      // Use relative URL for deletion
       await axios.delete(`/api/books/${id}`);
       window.location.reload();
     } catch (err) {
