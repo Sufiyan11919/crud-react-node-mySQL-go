@@ -86,15 +86,11 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
       DB_PORT: ${DB_PORT}
-      FRONTEND_URL: ${FRONTEND_URL}
-      PORT: ${PORT}
     ports:
       - "8800:8800"
 
   frontend:
     build:
       context: ./frontend
-    environment:
-      VITE_API_BASE_URL: ${FRONTEND_URL}
     ports:
       - "5173:5173"
