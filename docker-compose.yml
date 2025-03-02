@@ -86,11 +86,28 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
       DB_PORT: ${DB_PORT}
-    ports:
-      - "8800:8800"
+      FRONTEND_URL: ${FRONTEND_URL}
+      PORT: ${PORT}
+    expose:
+      - "8800"  # Only exposed to the Docker network
 
   frontend:
     build:
       context: ./frontend
+    environment:
+      VITE_API_BASE_URL: ${FRONTEND_URL}  # Your API URL is now set externally
+    expose:
+      - "5173"  # Only exposed internally
+
+  nginx:
+    image: nginx:latest
     ports:
-      - "5173:5173"
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      # If using SSL, mount your certificate files:
+      - ./certs:/etc/nginx/certs:ro
+    depends_on:
+      - backend
+      - frontend
