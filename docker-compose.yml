@@ -87,7 +87,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
       DB_PORT: ${DB_PORT}
-      FRONTEND_URL: ${FRONTEND_URL}
+      FRONTEND_URL: "http://52.20.6.218"  
       PORT: ${PORT}
     ports:
       - "8800:8800"
@@ -96,7 +96,7 @@ services:
     build:
       context: ./frontend
     environment:
-      VITE_API_BASE_URL: ${FRONTEND_URL}
+      VITE_API_BASE_URL: "http://52.20.6.218/api" 
     ports:
       - "5173:5173"
 
