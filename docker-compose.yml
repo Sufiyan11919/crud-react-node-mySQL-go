@@ -88,16 +88,16 @@ services:
       DB_PORT: ${DB_PORT}
       FRONTEND_URL: ${FRONTEND_URL}
       PORT: ${PORT}
-    expose:
-      - "8800"  # Only exposed to the Docker network
+    ports:
+      - "8800:8800" 
 
   frontend:
     build:
       context: ./frontend
     environment:
-      VITE_API_BASE_URL: ${FRONTEND_URL}  # Your API URL is now set externally
-    expose:
-      - "5173"  # Only exposed internally
+      VITE_API_BASE_URL: ${FRONTEND_URL}  
+    ports:
+      - "5173:5173"  
 
   # nginx:
   #   image: nginx:latest
