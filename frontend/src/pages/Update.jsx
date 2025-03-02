@@ -13,6 +13,7 @@ const Update = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const bookID = location.pathname.split("/")[2];
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8800";
 
   const handleChange = (e) => {
     setBook(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -21,8 +22,7 @@ const Update = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      // Use relative URL for API call.
-      await axios.put(`/api/books/${bookID}`, book);
+      await axios.put(`${API_BASE_URL}/books/${bookID}`, book);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -34,10 +34,10 @@ const Update = () => {
   return (
     <div className='form'>
       <h1>Update Book</h1>
-      <input type="text" placeholder="title" onChange={handleChange} name="title" />
-      <input type="text" placeholder="description" onChange={handleChange} name="description" />
-      <input type="number" placeholder="price" onChange={handleChange} name="price" />
-      <input type="text" placeholder="cover" onChange={handleChange} name="cover" />
+      <input type="text" placeholder="title" onChange={handleChange} name="title"/>
+      <input type="text" placeholder="description" onChange={handleChange} name="description"/>
+      <input type="number" placeholder="price" onChange={handleChange} name="price"/>
+      <input type="text" placeholder="cover" onChange={handleChange} name="cover"/>
       <button onClick={handleClick} className='updateButton'>Update</button>
     </div>
   );

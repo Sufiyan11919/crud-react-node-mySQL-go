@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8800";
 
   useEffect(() => {
     const fetchAllBooks = async () => {
       try {
-        // Relative URL for API call.
-        const res = await axios.get(`/api/books`);
+        const res = await axios.get(`${API_BASE_URL}/books`);
         setBooks(res.data);
         console.log(res);
       } catch (err) {
@@ -17,11 +17,11 @@ const Books = () => {
       }
     };
     fetchAllBooks();
-  }, []);
+  }, [API_BASE_URL]);
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/books/${id}`);
+      await axios.delete(`${API_BASE_URL}/books/${id}`);
       window.location.reload();
     } catch (err) {
       console.log(err);
