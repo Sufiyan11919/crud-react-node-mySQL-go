@@ -18,9 +18,9 @@ const Add = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8800";
     try {
-      // Use relative URL so Nginx proxies the request to the backend.
-      await axios.post(`/api/books`, book);
+      await axios.post(`${API_BASE_URL}/books`, book);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -32,10 +32,10 @@ const Add = () => {
   return (
     <div className='form'>
       <h1>Add New Book</h1>
-      <input type="text" placeholder="title" onChange={handleChange} name="title" />
-      <input type="text" placeholder="description" onChange={handleChange} name="description" />
-      <input type="number" placeholder="price" onChange={handleChange} name="price" />
-      <input type="text" placeholder="cover" onChange={handleChange} name="cover" />
+      <input type="text" placeholder="title" onChange={handleChange} name="title"/>
+      <input type="text" placeholder="description" onChange={handleChange} name="description"/>
+      <input type="number" placeholder="price" onChange={handleChange} name="price"/>
+      <input type="text" placeholder="cover" onChange={handleChange} name="cover"/>
       <button onClick={handleClick} className='addButton'>Add</button>
     </div>
   );
