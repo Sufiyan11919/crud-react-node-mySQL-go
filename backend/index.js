@@ -25,11 +25,6 @@ db.connect((err) => {
     console.log("Connected to the MySQL database.");
 });
 
-//enable CORS for frontend origin only
-const corsOptions = {
-  origin: ["http://sufiyancreates.live/"],
-};
-app.use(cors(corsOptions));
 
 // Ensure the books table exists
 const createBooksTable = `
