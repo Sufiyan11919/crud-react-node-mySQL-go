@@ -31,12 +31,6 @@ services:
       DB_PORT: 3306
     ports:
       - "8800:8800"
-    # New health check for the backend
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8800/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   frontend:
     build:
