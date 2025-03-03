@@ -32,7 +32,7 @@ const Add = () => {
 
   return (
     <div className='form'>
-      <h1>Add new Book</h1>
+      <h1>Book Button</h1>
       <input type="text" placeholder="title" onChange={handleChange} name="title"/>
       <input type="text" placeholder="description" onChange={handleChange} name="description"/>
       <input type="number" placeholder="price" onChange={handleChange} name="price"/>
