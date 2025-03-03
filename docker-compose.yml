@@ -87,7 +87,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
       DB_PORT: ${DB_PORT}
-      FRONTEND_URL: "http://52.20.6.218"  
+      FRONTEND_URL: "https://www.sufiyancreates.live"  
       PORT: ${PORT}
     ports:
       - "8800:8800"
@@ -96,7 +96,7 @@ services:
     build:
       context: ./frontend
     environment:
-      VITE_API_BASE_URL: "http://52.20.6.218/api" 
+      VITE_API_BASE_URL: "https://www.sufiyancreates.live/api" 
     ports:
       - "5173:5173"
 
@@ -104,8 +104,10 @@ services:
     image: nginx:latest
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt-docker:/etc/letsencrypt  # Mounting SSL certs inside Nginx
     depends_on:
       - backend
       - frontend
