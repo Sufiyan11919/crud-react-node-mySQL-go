@@ -47,7 +47,7 @@ db.query(createBooksTable, (err, result) => {
 app.use(express.json());
 
 // Allow frontend requests from the correct origin
-const allowedOrigins = [process.env.FRONTEND_URL];
+const allowedOrigins = ["www.sufiyancreates.live"];
 app.use(cors({
     origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
