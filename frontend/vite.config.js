@@ -4,12 +4,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: '0.0.0.0',   
-    port: 5173,        
+    host: '0.0.0.0',
+    port: 5173,
+    https: true,  
     hmr: {
-      host: 'www.sufiyancreates.live', 
-      protocol: 'ws',                  
-      port: 5173                       
+      host: 'www.sufiyancreates.live',
+      protocol: 'wss',  
+      port: 5173
     }
   }
 })
