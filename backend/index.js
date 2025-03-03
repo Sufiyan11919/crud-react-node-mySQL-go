@@ -25,7 +25,6 @@ db.connect((err) => {
     console.log("Connected to the MySQL database.");
 });
 
-
 // Ensure the books table exists
 const createBooksTable = `
 CREATE TABLE IF NOT EXISTS books (
@@ -48,12 +47,13 @@ db.query(createBooksTable, (err, result) => {
 app.use(express.json());
 
 // Allow frontend requests from the correct origin
-const allowedOrigins = ['http://www.sufiyancreates.live'];
+const allowedOrigins = [process.env.FRONTEND_URL];
 app.use(cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
 }));
+
 // Routes
 app.get("/", (req, res) => {
     res.json("Hello World from the backend!!!");
@@ -114,5 +114,3 @@ const PORT = process.env.PORT || 8800;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
-//working with ngnix
