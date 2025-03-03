@@ -1,16 +1,41 @@
-# docker-compose.qa.yml
+# # docker-compose.qa.yml
+# services:
+#   mysql:
+#     # Disable the MySQL service for QA by overriding with an empty service definition or simply not including it.
+#     image: busybox
+#     command: "echo 'Skipping local MySQL on QA'" 
+#     deploy:
+#       replicas: 0
+
+#   backend:
+#     environment:
+#       DB_HOST: ${DB_HOST}
+#       DB_USER: ${DB_USER}
+#       DB_PASSWORD: ${DB_PASSWORD}
+#       DB_DATABASE: ${DB_DATABASE}
+#       DB_PORT: ${DB_PORT}
+
+version: "3.8"
 services:
   mysql:
-    # Disable the MySQL service for QA by overriding with an empty service definition or simply not including it.
+    # Disable the MySQL service for QA
     image: busybox
-    command: "echo 'Skipping local MySQL on QA'" 
+    command: "echo 'Skipping local MySQL on QA'"
     deploy:
       replicas: 0
 
   backend:
+    # Remove the build block and use the ECR image
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/my-app-backend:latest
     environment:
       DB_HOST: ${DB_HOST}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
       DB_PORT: ${DB_PORT}
+
+  frontend:
+    # Remove the build block and use the ECR image
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/my-app-frontend:latest
+    environment:
+      VITE_API_BASE_URL: "https://www.sufiyancreates.live/api"
