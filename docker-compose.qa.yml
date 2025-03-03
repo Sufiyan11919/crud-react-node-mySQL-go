@@ -1,20 +1,3 @@
-# # docker-compose.qa.yml
-# services:
-#   mysql:
-#     # Disable the MySQL service for QA by overriding with an empty service definition or simply not including it.
-#     image: busybox
-#     command: "echo 'Skipping local MySQL on QA'" 
-#     deploy:
-#       replicas: 0
-
-#   backend:
-#     environment:
-#       DB_HOST: ${DB_HOST}
-#       DB_USER: ${DB_USER}
-#       DB_PASSWORD: ${DB_PASSWORD}
-#       DB_DATABASE: ${DB_DATABASE}
-#       DB_PORT: ${DB_PORT}
-
 version: "3.8"
 services:
   mysql:
