@@ -1,10 +1,9 @@
-//backend/index.js
 import express from "express";
 import mysql2 from "mysql2";
 import cors from "cors";
 import dotenv from "dotenv";
 
-dotenv.config(); 
+dotenv.config(); // Load environment variables
 
 const app = express();
 
